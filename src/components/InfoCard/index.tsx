@@ -10,12 +10,9 @@ interface InforCardProps {
 }
 
 const InfoCard: React.FC<InforCardProps> = ({ quantity, type }) => {
-  const handleParseValue = useCallback(
-    (value: number) => {
-      return value < 10 ? `0${value}` : value;
-    },
-    [quantity]
-  );
+  const handleParseValue = useCallback((value: number) => {
+    return value < 10 ? `0${value}` : value;
+  }, []);
 
   return (
     <Container type={type}>

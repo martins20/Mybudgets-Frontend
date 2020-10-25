@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { NewIcon } from "../../styles/icons";
 
@@ -15,6 +15,15 @@ interface DashboardContainerProps {
 }
 
 const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
+  const handleSumTotalOfBudgetPrice = useCallback(() => {
+    const totalPrice = budgets.reduce(
+      (accumulator, budget) => accumulator + budget.budget_price,
+      0
+    );
+
+    return totalPrice;
+  }, [budgets]);
+
   return (
     <Container>
       <DashboardHeader isDropdownToggled={false} />
@@ -23,8 +32,11 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
         <h2>Dashboard</h2>
 
         <div>
-          <InfoCard quantity={9} type="Budget" />
-          <InfoCard quantity={48000} type="Total price" />
+          <InfoCard quantity={budgets.length} type="Budget" />
+          <InfoCard
+            quantity={handleSumTotalOfBudgetPrice()}
+            type="Total price"
+          />
         </div>
       </Header>
 
@@ -37,7 +49,7 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
           </button>
         </header>
 
-        <BudgetsListContainer />
+        <BudgetsListContainer budgets={budgets} />
       </Main>
     </Container>
   );

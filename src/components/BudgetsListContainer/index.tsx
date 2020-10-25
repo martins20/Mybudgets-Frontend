@@ -1,21 +1,35 @@
 import React from "react";
+import IBudgetDTO from "../../dtos/IBudgetDTO";
 
 import Budget from "../Budget";
+import NoBudgetMessage from "../NoBudgetMessage";
 
 import { Container } from "./styles";
 
-const BudgetsListContainer: React.FC = () => {
+interface BudgetsListContainerProps {
+  budgets: IBudgetDTO[];
+}
+
+const BudgetsListContainer: React.FC<BudgetsListContainerProps> = ({
+  budgets,
+}) => {
   return (
     <Container>
-      <Budget
-        budget_price={1000000}
-        designer_quantity={1}
-        dev_quantity={1}
-        name="Tinbeer"
-        min_day={20}
-        po_quantity={10}
-        sm_quantity={10}
-      />
+      {budgets.length ? (
+        budgets.map((budget) => (
+          <Budget
+            budget_price={budget.budget_price}
+            designer_quantity={budget.designer_quantity}
+            dev_quantity={budget.dev_quantity}
+            name={budget.name}
+            min_day={budget.min_day}
+            po_quantity={budget.po_quantity}
+            sm_quantity={budget.sm_quantity}
+          />
+        ))
+      ) : (
+        <NoBudgetMessage />
+      )}
     </Container>
   );
 };
