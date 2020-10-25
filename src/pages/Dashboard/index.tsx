@@ -1,11 +1,17 @@
 import React from "react";
 
-import { Container } from "./styles";
+import DashboardConatiner from "../DashboardContainer";
+import LeftSideBar from "../LeftSideBar";
+
+import { Container, Main } from "./styles";
 
 const Dashboard: React.FC = () => {
   return (
     <Container>
-      <h1>Dashboard</h1>
+      <Main>
+        <LeftSideBar />
+        <DashboardConatiner />
+      </Main>
     </Container>
   );
 };

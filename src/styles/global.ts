@@ -5,12 +5,14 @@ export default createGlobalStyle`
         --background: #ffffff;
         --purple: #9b07e6;
         --pink: #a420ea;
-        --white: #ffffff
+        --white: #ffffff;
         --yellow: #f3b919;
         --light-red: #ed337e;
         --light-blue: #337fef;
         --ligth-gray: #b9b9b9;
         --gray: #575757;
+
+        font-size: 60%;
     }
 
     * {
@@ -32,11 +34,11 @@ export default createGlobalStyle`
     
     body, input, button {
         font-family: Roboto, sans-serif;
-        font-size: 16px;
     }
     
-    h1, h2, h3, h4, h5, h6, strong {
+    h1, h2, h3, h4, h5, h6 {
         font-weight: 500;
+        font-size: 3rem;
     }
 
     button {
