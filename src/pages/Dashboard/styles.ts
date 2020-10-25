@@ -4,6 +4,7 @@ export const Container = styled.div`
   height: 100%;
 
   padding: 10px;
+  background: linear-gradient(to top, var(--light-pink), white, white, white);
 
   @media (min-width: 700px) {
     padding: 60px;

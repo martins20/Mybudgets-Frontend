@@ -8,6 +8,7 @@ import {
   SignOutIcon,
 } from "../../styles/icons";
 import ActionType from "../ActionType";
+import { useAuth } from "../../hooks/auth";
 
 import {
   Container,
@@ -18,6 +19,7 @@ import {
 } from "./styles";
 
 const LeftSideBar: React.FC = () => {
+  const { signOut } = useAuth();
   return (
     <Container>
       <Header>
@@ -45,7 +47,7 @@ const LeftSideBar: React.FC = () => {
 
       <SignOut>
         <SignOutIcon />
-        <b>Logout</b>
+        <b onClick={signOut}>Logout</b>
       </SignOut>
     </Container>
   );
