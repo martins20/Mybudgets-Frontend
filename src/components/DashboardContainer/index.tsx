@@ -1,10 +1,12 @@
 import React from "react";
+
+import { NewIcon } from "../../styles/icons";
+
 import IBudgetDTO from "../../dtos/IBudgetDTO";
-import BudgetListContainer from "../BudgetListContainer";
+import BudgetsListContainer from "../BudgetsListContainer";
 
 import DashboardHeader from "../DashboardHeader";
 import InfoCard from "../InfoCard";
-import NewBudgetButton from "../NewBudgetButton";
 
 import { Container, Header, Main } from "./styles";
 
@@ -30,10 +32,12 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
         <header>
           <h2>My budgets</h2>
 
-          <NewBudgetButton />
+          <button>
+            <NewIcon /> New budget
+          </button>
         </header>
 
-        <BudgetListContainer />
+        <BudgetsListContainer />
       </Main>
     </Container>
   );
