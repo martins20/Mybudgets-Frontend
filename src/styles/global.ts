@@ -5,11 +5,12 @@ export default createGlobalStyle`
         --background: #ffffff;
         --purple: #9b07e6;
         --pink: #a420ea;
+        --light-pink: #d585ff;
         --white: #ffffff;
         --yellow: #f3b919;
         --light-red: #ed337e;
         --light-blue: #337fef;
-        --ligth-gray: #b9b9b9;
+        --light-gray: #b9b9b9;
         --gray: #575757;
 
         font-size: 60%;

@@ -1,7 +1,7 @@
 import React from "react";
 
-import DashboardConatiner from "../DashboardContainer";
-import LeftSideBar from "../LeftSideBar";
+import DashboardConatiner from "../../components/DashboardContainer";
+import LeftSideBar from "../../components/LeftSideBar";
 
 import { Container, Main } from "./styles";
 
