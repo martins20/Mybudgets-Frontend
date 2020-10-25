@@ -1,47 +1,63 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import { FormHandles } from "@unform/core";
 import * as Yup from "yup";
+import { useHistory } from "react-router-dom";
 
-import Input from "../../components/Input";
 import getValidationErrors from "../../utils/GetValidationErrors";
 import { useAuth } from "../../hooks/auth";
 
-import { Container, Main, LeftSide, Form, RightSide } from "./styles";
+import Input from "../../components/Input";
+import Buttom from "../../components/Buttom";
 
+import { Container, Main, LeftSide, Form, RightSide } from "./styles";
 interface Login {
   email: string;
   password: string;
 }
 
 const SignIn: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const formRef = useRef<FormHandles>(null);
+
+  const history = useHistory();
 
   const { signIn } = useAuth();
 
-  const handleSubmit = useCallback(async (data: Login) => {
-    try {
-      const sheema = Yup.object().shape({
-        email: Yup.string()
-          .required("E-mail is required")
-          .email("Invalid E-mail"),
-        password: Yup.string().required("Password is required"),
-      });
+  const handleSubmit = useCallback(
+    async (data: Login) => {
+      setLoading(true);
+      try {
+        const sheema = Yup.object().shape({
+          email: Yup.string()
+            .required("E-mail is required")
+            .email("Invalid E-mail"),
+          password: Yup.string().required("Password is required"),
+        });
 
-      await sheema.validate(data, {
-        abortEarly: false,
-      });
+        await sheema.validate(data, {
+          abortEarly: false,
+        });
 
-      const { email, password } = data;
+        const { email, password } = data;
 
-      await signIn({ email, password });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+        await signIn({ email, password });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+          formRef.current?.setFieldValue("password", "");
+
+          return setLoading(false);
+        }
+
+        formRef.current?.setFieldValue("password", "");
+        formRef.current?.setFieldError("email", err.response.data.message);
+        setLoading(false);
       }
-    }
-  }, []);
+    },
+    [signIn]
+  );
 
   return (
     <Container>
@@ -53,7 +69,6 @@ const SignIn: React.FC = () => {
             <Input
               name="email"
               placeholder="E-mail"
-              type="email"
               onChange={() => formRef.current?.setFieldError("email", "")}
             />
             <Input
@@ -64,9 +79,9 @@ const SignIn: React.FC = () => {
             />
 
             <footer>
-              <b>Sign up</b>
+              <b onClick={() => history.push("/signup")}>Sign up</b>
 
-              <button type="submit">Login</button>
+              <Buttom name="Login" loading={loading} />
             </footer>
           </Form>
         </LeftSide>

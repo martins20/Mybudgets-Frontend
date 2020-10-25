@@ -13,43 +13,85 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   flex: 1;
 
   height: 100%;
+  overflow-y: scroll;
 
-  border-radius: 10px;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
 
-  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.1);
-`;
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(213, 133, 255, 0.3);
+  }
 
-export const LeftSide = styled.section`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(164, 32, 234, 0.3);
 
-  flex: 1;
-  /* min-width: 700px; */
-  background: var(--light-pink);
-
-  > h3 {
-    color: var(--white);
-
-    margin-bottom: 50px;
+    &:hover {
+      background: rgba(164, 32, 234, 0.5);
+    }
   }
 
   border-radius: 10px;
 
+  box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.1);
+  background: var(--light-pink);
+  padding: 20px;
+
+  > h3 {
+    color: var(--white);
+    font-weight: 700;
+  }
+`;
+
+export const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+
+  > b {
+    margin-bottom: 10px;
+
+    font-size: 1.5rem;
+    color: var(--white);
+  }
+
+  & + section {
+    margin-top: 20px;
+  }
+`;
+
+export const Grid = styled.div`
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+
   @media (min-width: 700px) {
-    border-radius: 10px 0 0 10px;
+    display: grid;
+    width: 100%;
+
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 30px;
+    grid-column-gap: 20px;
+
+    > div {
+      margin: 0;
+    }
   }
 `;
 
 export const Form = styled(UnformFormComponent)`
   display: flex;
   flex-direction: column;
+  padding: 20px 50px;
 
-  width: 60%;
+  width: 100%;
 
   align-self: center;
 
@@ -73,22 +115,5 @@ export const Form = styled(UnformFormComponent)`
         color: var(--pink);
       }
     }
-  }
-`;
-
-export const RightSide = styled.section`
-  display: none;
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  flex: 1;
-  background: var(--pink);
-
-  @media (min-width: 700px) {
-    display: flex;
-
-    border-radius: 0 10px 10px 0;
   }
 `;

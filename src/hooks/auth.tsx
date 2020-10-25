@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
+import api from "../services/api";
 // import api from '../services/api';
 
 interface AuthState {
@@ -34,8 +35,19 @@ export const AuthProvider: React.FC = ({ children }) => {
   const signIn = useCallback(async ({ email, password }) => {
     // Make request to get Token and userData, this line bellow is a ficticius request received
 
-    const user = { name: "Paulo César", email };
-    const token = "aswdjfn3açsduh8123123sçdkdasd";
+    const {
+      data: { token, user },
+    } = await api.post<AuthState>("sessions", {
+      email,
+      password,
+    });
+
+    api.interceptors.request.use((config) => {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    });
 
     localStorage.setItem("@MyBudgets:token", token);
     localStorage.setItem("@MyBudgets:user", JSON.stringify(user));

@@ -3,12 +3,15 @@ import { IconType } from "react-icons";
 
 import { Container } from "./styles";
 
-interface ButtonProps {
+interface LeftSideButtomProps {
   name: string;
   icon?: IconType;
 }
 
-const Button: React.FC<ButtonProps> = ({ name, icon: Icon }) => {
+const LeftSideButtom: React.FC<LeftSideButtomProps> = ({
+  name,
+  icon: Icon,
+}) => {
   return (
     <Container hasIcon={!!Icon}>
       {Icon && <Icon />}
@@ -17,4 +20,4 @@ const Button: React.FC<ButtonProps> = ({ name, icon: Icon }) => {
   );
 };
 
-export default Button;
+export default LeftSideButtom;
