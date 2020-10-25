@@ -52,6 +52,7 @@ export const Main = styled.main`
   flex-direction: column;
   flex: 1;
   overflow: hidden;
+  padding: 10px;
   width: 100%;
 
   margin-top: 20px;

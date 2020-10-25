@@ -14,7 +14,7 @@ const BudgetsListContainer: React.FC<BudgetsListContainerProps> = ({
   budgets,
 }) => {
   return (
-    <Container>
+    <Container hasBudget={!!budgets.length}>
       {budgets.length ? (
         budgets.map((budget) => (
           <Budget
