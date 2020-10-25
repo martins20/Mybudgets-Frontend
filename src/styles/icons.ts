@@ -5,6 +5,8 @@ import { IoIosBriefcase } from "react-icons/io";
 import { RiMapPinUserLine } from "react-icons/ri";
 import { AiOutlinePoweroff } from "react-icons/ai";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { BsPlus } from "react-icons/bs";
+import { BiSad } from "react-icons/bi";
 
 const defaultStyle = css`
   font-size: 18px;
@@ -36,4 +38,12 @@ export const ArrowDownIcon = styled(AiFillCaretDown)`
 export const ArrowUpIcon = styled(AiFillCaretUp)`
   ${defaultStyle};
   color: var(--pink);
+`;
+
+export const NewIcon = styled(BsPlus)`
+  ${defaultStyle}
+`;
+
+export const SadFaceIcon = styled(BiSad)`
+  font-size: 20px;
 `;

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import DashboardConatiner from "../../components/DashboardContainer";
+import DashboardContainer from "../../components/DashboardContainer";
 import LeftSideBar from "../../components/LeftSideBar";
 
 import { Container, Main } from "./styles";
@@ -10,7 +10,7 @@ const Dashboard: React.FC = () => {
     <Container>
       <Main>
         <LeftSideBar />
-        <DashboardConatiner />
+        <DashboardContainer budgets={[]} />
       </Main>
     </Container>
   );

@@ -46,3 +46,5 @@ export const Header = styled.header`
     }
   }
 `;
+
+export const Main = styled.main``;
