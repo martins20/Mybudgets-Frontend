@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 
+import handleParseValueToCurrencyType from "../../utils/handleParseValueToCurrencyType";
+
 import { Container } from "./styles";
 
 interface InforCardProps {
@@ -10,19 +12,19 @@ interface InforCardProps {
 const InfoCard: React.FC<InforCardProps> = ({ quantity, type }) => {
   const handleParseValue = useCallback(
     (value: number) => {
-      if (type === "Budget") return value < 10 ? `0${value}` : value;
-
-      return value.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
+      return value < 10 ? `0${value}` : value;
     },
     [quantity]
   );
 
   return (
     <Container type={type}>
-      <h2>{handleParseValue(quantity)}</h2>
+      <div />
+      <h2>
+        {type === "Budget"
+          ? handleParseValue(quantity)
+          : handleParseValueToCurrencyType(quantity)}
+      </h2>
       <b>{type}</b>
     </Container>
   );

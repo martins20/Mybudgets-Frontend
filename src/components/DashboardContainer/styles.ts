@@ -46,3 +46,50 @@ export const Header = styled.header`
     }
   }
 `;
+
+export const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  width: 100%;
+
+  margin-top: 20px;
+
+  > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 10px;
+
+    > h2 {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+
+    > button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border: 0;
+      padding: 5px 10px;
+
+      border-radius: 5px;
+      font-weight: 500;
+      color: var(--white);
+
+      background: var(--light-pink);
+
+      > svg {
+        margin-right: 5px;
+      }
+
+      transition: background 0.3s;
+
+      &:hover {
+        background: var(--pink);
+      }
+    }
+  }
+`;

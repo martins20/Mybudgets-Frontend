@@ -1,9 +1,11 @@
 import React from "react";
+import { NewIcon } from "../../styles/icons";
+import BudgetsListContainer from "../BudgetsListContainer";
 
 import DashboardHeader from "../DashboardHeader";
 import InfoCard from "../InfoCard";
 
-import { Container, Header } from "./styles";
+import { Container, Header, Main } from "./styles";
 
 const DashboardContainer: React.FC = () => {
   return (
@@ -18,6 +20,18 @@ const DashboardContainer: React.FC = () => {
           <InfoCard quantity={48000} type="Total price" />
         </div>
       </Header>
+
+      <Main>
+        <header>
+          <h2>My budgets</h2>
+
+          <button>
+            <NewIcon /> New budget
+          </button>
+        </header>
+
+        <BudgetsListContainer />
+      </Main>
     </Container>
   );
 };
