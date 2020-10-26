@@ -1,6 +1,5 @@
 import React from "react";
 import { SadFaceIcon } from "../../styles/icons";
-import NewBudgetButton from "../NewBudgetButton";
 
 import { Container, Message } from "./styles";
 

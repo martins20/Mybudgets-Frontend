@@ -42,7 +42,7 @@ export const Main = styled.main`
 
   box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.1);
   background: var(--light-pink);
-  padding: 20px;
+  padding: 60px 20px 20px 20px;
 
   > h3 {
     color: var(--white);
