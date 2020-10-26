@@ -20,15 +20,14 @@ $ yarn start
 
 ### Techs
 
-```
-typescript
-axios,
-react,
-react-router-dom,
-styled-components,
-typescript,
-react-loading,
-react-icons,
-unform,
-yup
-```
+- [x] Typescript
+- [x] Axios,
+- [x] React,
+- [x] Hooks,
+- [x] React-router-dom,
+- [x] Styled-components,
+- [x] Typescript,
+- [x] React-loading,
+- [x] React-icons,
+- [x] Unform,
+- [x] Yup
