@@ -10,6 +10,13 @@ A ReactJS application for technology project costs. To use the service, the cust
 <br>
 <br>
 
+<div align="center">
+<img src='./assets/DashboardMobile.png' alt="dashboard_mobile">
+</div>
+
+<br>
+<br>
+
 ### How to install
 
 💭 Needs to have the backend instaled and running ( <a href="https://github.com/martins20/MyBydgets-Backend">backend</a> )
