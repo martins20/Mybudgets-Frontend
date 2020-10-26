@@ -22,7 +22,7 @@ const BudgetsListContainer: React.FC<BudgetsListContainerProps> = ({
             designer_quantity={budget.designer_quantity}
             dev_quantity={budget.dev_quantity}
             name={budget.name}
-            min_day={budget.min_day}
+            min_day={budget.min_days}
             po_quantity={budget.po_quantity}
             sm_quantity={budget.sm_quantity}
           />

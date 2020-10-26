@@ -4,6 +4,10 @@ import { ArrowDownIcon, ArrowUpIcon, SignOutIcon } from "../../styles/icons";
 
 import { Container, DropDown, DropDownItems, SignOut } from "./styles";
 
+const storagedUserData = localStorage.getItem("@MyBudgets:user");
+
+const data = storagedUserData && JSON.parse(storagedUserData);
+
 interface DashboardHeaderProps {
   isDropdownToggled: boolean;
 }
@@ -22,7 +26,7 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
           alt="Profile"
         />
 
-        <b>Paulo</b>
+        <b>{data.first_name}</b>
 
         {isDropdownToggled ? (
           <ArrowUpIcon onClick={() => setIsToggled(!isToggled)} />

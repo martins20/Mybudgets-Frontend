@@ -5,6 +5,6 @@ export default interface IBudgetDTO {
   designer_quantity: number;
   po_quantity: number;
   sm_quantity: number;
-  min_day: number;
+  min_days: number;
   budget_price: number;
 }

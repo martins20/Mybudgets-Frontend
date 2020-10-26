@@ -84,7 +84,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           );
         }
 
-        if (!Number(dev_quantity)) {
+        if (!Number(dev_quantity) && Number(dev_quantity) !== 0) {
           formRef.current?.setFieldError(
             "dev_quantity",
             "Dev quantity must be a number"
@@ -93,7 +93,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           error = true;
         }
 
-        if (!Number(po_quantity)) {
+        if (!Number(po_quantity) && Number(po_quantity) !== 0) {
           formRef.current?.setFieldError(
             "po_quantity",
             "Product owner quantity must be a number"
@@ -102,7 +102,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           error = true;
         }
 
-        if (!Number(designer_quantity)) {
+        if (!Number(designer_quantity) && Number(designer_quantity) !== 0) {
           formRef.current?.setFieldError(
             "designer_quantity",
             "Designer quantity must be a number"
@@ -111,7 +111,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           error = true;
         }
 
-        if (!Number(sm_quantity)) {
+        if (!Number(sm_quantity) && Number(sm_quantity) !== 0) {
           formRef.current?.setFieldError(
             "sm_quantity",
             "Scrum master quantity must be a number"
@@ -120,7 +120,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           error = true;
         }
 
-        if (!Number(min_days)) {
+        if (!Number(min_days) && Number(min_days) !== 0) {
           formRef.current?.setFieldError(
             "min_days",
             "Days quantity must be a number"
@@ -129,7 +129,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           error = true;
         }
 
-        if (error) return;
+        if (error) return setLoading(false);
 
         const response = await api.post("budgets", {
           name,
@@ -159,6 +159,8 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           formRef.current?.setFieldError("email", err.response.data.message);
         }
 
+        console.log(err);
+
         setLoading(false);
       }
     },
@@ -176,7 +178,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           <Input name="designer_quantity" placeholder="Designer quantity" />
           <Input name="sm_quantity" placeholder="Scrum master quantity" />
           <Input name="po_quantity" placeholder="Product owner quantity" />
-          <Input name="min_days" placeholder="Days quantity" />
+          <Input name="min_days" placeholder="Days quantity " />
 
           <footer>
             <CancelButton type="button" onClick={() => setIsVisible(false)}>
