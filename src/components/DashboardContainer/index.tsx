@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 
 import { NewIcon } from "../../styles/icons";
 
@@ -9,12 +9,15 @@ import DashboardHeader from "../DashboardHeader";
 import InfoCard from "../InfoCard";
 
 import { Container, Header, Main } from "./styles";
+import NewBudget from "../NewBudget";
 
 interface DashboardContainerProps {
   budgets: IBudgetDTO[];
 }
 
 const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
   const handleSumTotalOfBudgetPrice = useCallback(() => {
     const totalPrice = budgets?.reduce(
       (accumulator, budget) => accumulator + budget.budget_price,
@@ -44,13 +47,15 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
         <header>
           <h2>My budgets</h2>
 
-          <button>
+          <button type="button" onClick={() => setIsVisible(true)}>
             <NewIcon /> New budget
           </button>
         </header>
 
         <BudgetsListContainer budgets={budgets} />
       </Main>
+
+      <NewBudget isVisible={isVisible} setIsVisible={setIsVisible} />
     </Container>
   );
 };

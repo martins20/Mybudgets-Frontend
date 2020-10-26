@@ -11,8 +11,6 @@ const NoBudgetMessage: React.FC = () => {
         <b>
           OOoh! Looks is like you don't have a budget... <SadFaceIcon />
         </b>
-        <small>Let's create it!</small>
-        <NewBudgetButton />
       </Message>
     </Container>
   );

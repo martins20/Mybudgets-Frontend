@@ -15,6 +15,8 @@ const Dashboard: React.FC = () => {
   const handleGetBudgets = useCallback(async () => {
     const { data: budgets } = await api.get<IBudgetDTO[]>("budgets");
 
+    console.log(budgets);
+
     handleSetInitialBudgets(budgets);
   }, [handleSetInitialBudgets]);
 

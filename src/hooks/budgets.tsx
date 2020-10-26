@@ -13,12 +13,9 @@ const BudgetsContext = createContext<BudgetsContextData>(
 export const BudgetsProvider: React.FC = ({ children }) => {
   const [budgets, setBudgets] = useState<IBudgetDTO[]>([]);
 
-  const handleSetInitialBudgets = useCallback(
-    (budget: IBudgetDTO[]) => {
-      setBudgets(budgets);
-    },
-    [budgets]
-  );
+  const handleSetInitialBudgets = useCallback((budgets: IBudgetDTO[]) => {
+    setBudgets(budgets);
+  }, []);
 
   return (
     <BudgetsContext.Provider value={{ budgets, handleSetInitialBudgets }}>

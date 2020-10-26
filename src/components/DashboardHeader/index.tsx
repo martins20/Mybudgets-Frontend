@@ -1,7 +1,8 @@
-import React from "react";
-import { ArrowDownIcon, ArrowUpIcon } from "../../styles/icons";
+import React, { useState } from "react";
+import { useAuth } from "../../hooks/auth";
+import { ArrowDownIcon, ArrowUpIcon, SignOutIcon } from "../../styles/icons";
 
-import { Container, DropDown } from "./styles";
+import { Container, DropDown, DropDownItems, SignOut } from "./styles";
 
 interface DashboardHeaderProps {
   isDropdownToggled: boolean;
@@ -10,6 +11,9 @@ interface DashboardHeaderProps {
 const DashboardHeader: React.FC<DashboardHeaderProps> = ({
   isDropdownToggled,
 }) => {
+  const [isToggled, setIsToggled] = useState(false);
+  const { signOut } = useAuth();
+
   return (
     <Container>
       <DropDown>
@@ -20,8 +24,18 @@ const DashboardHeader: React.FC<DashboardHeaderProps> = ({
 
         <b>Paulo</b>
 
-        {isDropdownToggled ? <ArrowUpIcon /> : <ArrowDownIcon />}
+        {isDropdownToggled ? (
+          <ArrowUpIcon onClick={() => setIsToggled(!isToggled)} />
+        ) : (
+          <ArrowDownIcon onClick={() => setIsToggled(!isToggled)} />
+        )}
       </DropDown>
+      <DropDownItems isToggled={isToggled}>
+        <SignOut>
+          <SignOutIcon />
+          <b onClick={signOut}>Logout</b>
+        </SignOut>
+      </DropDownItems>
     </Container>
   );
 };
