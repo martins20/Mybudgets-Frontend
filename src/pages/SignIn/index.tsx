@@ -52,7 +52,7 @@ const SignIn: React.FC = () => {
         }
 
         formRef.current?.setFieldValue("password", "");
-        formRef.current?.setFieldError("email", err.response.data.message);
+        formRef.current?.setFieldError("email", err.response?.data.message);
         setLoading(false);
       }
     },

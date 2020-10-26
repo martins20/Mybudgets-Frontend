@@ -7,6 +7,8 @@ import api from "../../services/api";
 import getValidationErrors from "../../utils/GetValidationErrors";
 import Input from "../Input";
 
+import { useBudgets } from "../../hooks/budgets";
+
 import { Container, Modal, CancelButton, CreateButton } from "./styles";
 import Loading from "react-loading";
 
@@ -28,6 +30,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
   const [loading, setLoading] = useState(false);
 
   const formRef = useRef<FormHandles>(null);
+  const { handleAddNewBudget } = useBudgets();
 
   const handleSubmit = useCallback(
     async (data: CreateBudget) => {
@@ -128,7 +131,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
 
         if (error) return;
 
-        await api.post("budgets", {
+        const response = await api.post("budgets", {
           name,
           dev_quantity: Number(dev_quantity),
           designer_quantity: Number(designer_quantity),
@@ -136,6 +139,8 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
           po_quantity: Number(po_quantity),
           min_days: Number(min_days),
         });
+
+        handleAddNewBudget(response.data);
 
         setIsVisible(false);
         formRef.current?.reset();
@@ -157,7 +162,7 @@ const NewBudget: React.FC<NewBudgetProps> = ({ isVisible, setIsVisible }) => {
         setLoading(false);
       }
     },
-    [setIsVisible]
+    [setIsVisible, handleAddNewBudget]
   );
 
   return (

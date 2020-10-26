@@ -3,7 +3,8 @@ import IBudgetDTO from "../dtos/IBudgetDTO";
 
 interface BudgetsContextData {
   budgets: IBudgetDTO[];
-  handleSetInitialBudgets(budget: IBudgetDTO[]): void;
+  handleSetInitialBudgets(budgets: IBudgetDTO[]): void;
+  handleAddNewBudget(budget: IBudgetDTO): void;
 }
 
 const BudgetsContext = createContext<BudgetsContextData>(
@@ -17,8 +18,17 @@ export const BudgetsProvider: React.FC = ({ children }) => {
     setBudgets(budgets);
   }, []);
 
+  const handleAddNewBudget = useCallback(
+    (budget: IBudgetDTO) => {
+      setBudgets([...budgets, budget]);
+    },
+    [budgets]
+  );
+
   return (
-    <BudgetsContext.Provider value={{ budgets, handleSetInitialBudgets }}>
+    <BudgetsContext.Provider
+      value={{ budgets, handleSetInitialBudgets, handleAddNewBudget }}
+    >
       {children}
     </BudgetsContext.Provider>
   );
