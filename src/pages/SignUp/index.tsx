@@ -93,7 +93,7 @@ const SignIn: React.FC = () => {
           return setLoading(false);
         }
 
-        if (err.response.data.message === "Email address already used") {
+        if (err.response?.data.message === "Email address already used") {
           formRef.current?.setFieldError("email", err.response.data.message);
         }
 
