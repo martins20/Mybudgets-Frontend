@@ -1,25 +1,33 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Button from "../LeftSideButton";
 
 import {
-  BriefcaseIcon,
+  // BriefcaseIcon,
   HomeIcon,
-  ProfileIcon,
+  // ProfileIcon,
   SignOutIcon,
 } from "../../styles/icons";
-import ActionType from "../ActionType";
+// import ActionType from "../ActionType";
 import { useAuth } from "../../hooks/auth";
 
 import {
   Container,
   Header,
   Section,
-  ModalsActionContainer,
+  // ModalsActionContainer,
   SignOut,
 } from "./styles";
 
 const LeftSideBar: React.FC = () => {
-  const { signOut } = useAuth();
+  const {
+    signOut,
+    user: { first_name, second_name, city },
+  } = useAuth();
+
+  const handleSignOut = useCallback(() => {
+    signOut();
+  }, [signOut]);
+
   return (
     <Container>
       <Header>
@@ -30,24 +38,26 @@ const LeftSideBar: React.FC = () => {
           alt="Profile"
         />
 
-        <b>Paulo Martins</b>
-        <small>Armação dos Búzios</small>
+        <b>
+          {first_name} {second_name}
+        </b>
+        <small>{city}</small>
       </Header>
 
       <Section>
         <Button name="Dashboard" icon={() => <HomeIcon />} />
       </Section>
 
-      <ModalsActionContainer>
+      {/* <ModalsActionContainer>
         <small>Referencias</small>
 
         <ActionType name="My budgets" icon={() => <BriefcaseIcon />} />
         <ActionType name="Profile" icon={() => <ProfileIcon />} />
-      </ModalsActionContainer>
+      </ModalsActionContainer> */}
 
       <SignOut>
         <SignOutIcon />
-        <b onClick={signOut}>Logout</b>
+        <b onClick={handleSignOut}>Logout</b>
       </SignOut>
     </Container>
   );

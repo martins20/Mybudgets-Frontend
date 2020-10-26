@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useHistory } from "react-router-dom";
 
 import getValidationErrors from "../../utils/GetValidationErrors";
-import { useAuth } from "../../hooks/auth";
 
 import Input from "../../components/Input";
 import Buttom from "../../components/Buttom";

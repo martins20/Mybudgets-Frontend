@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import DashboardContainer from "../../components/DashboardContainer";
 import LeftSideBar from "../../components/LeftSideBar";
+
+import api from "../../services/api";
+import { Container, Main, Loading } from "./styles";
+import { useBudgets } from "../../hooks/budgets";
 import IBudgetDTO from "../../dtos/IBudgetDTO";
 
-import { Container, Main } from "./styles";
-
 const Dashboard: React.FC = () => {
-  const [budgets, setBudgets] = useState<IBudgetDTO[]>([]);
+  const { budgets, handleSetInitialBudgets } = useBudgets();
+  const [loading, setLoading] = useState(true);
 
-  // Make Request
-  useEffect(() => {}, []);
+  const handleGetBudgets = useCallback(async () => {
+    const { data: budgets } = await api.get<IBudgetDTO[]>("budgets");
+
+    handleSetInitialBudgets(budgets);
+  }, [handleSetInitialBudgets]);
+
+  useEffect(() => {
+    setLoading(true);
+    handleGetBudgets();
+    setLoading(false);
+  }, [handleGetBudgets]);
 
   return (
     <Container>
       <Main>
-        <LeftSideBar />
-        <DashboardContainer budgets={budgets} />
+        {loading ? (
+          <Loading color="#d585ff" type="bubbles" />
+        ) : (
+          <>
+            <LeftSideBar />
+            <DashboardContainer budgets={budgets} />
+          </>
+        )}
       </Main>
     </Container>
   );

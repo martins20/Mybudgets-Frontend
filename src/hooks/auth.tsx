@@ -1,10 +1,26 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import api from "../services/api";
-// import api from '../services/api';
 
 interface AuthState {
   token: string;
-  user: object;
+  user: UserState;
+}
+
+interface UserState {
+  id: string;
+  first_name: string;
+  second_name: string;
+  cpf: string;
+  email: string;
+  phone: string;
+  cnpj: string;
+  company_name: string;
+  cep: string;
+  address: string;
+  number: number;
+  complement: string;
+  state: string;
+  city: string;
 }
 
 interface SignInCredentials {
@@ -13,7 +29,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: object;
+  user: UserState;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 }
@@ -26,6 +42,8 @@ export const AuthProvider: React.FC = ({ children }) => {
     const user = localStorage.getItem("@MyBudgets:user");
 
     if (token && user) {
+      api.defaults.headers["Authorization"] = `Bearer ${token}`;
+
       return { token, user: JSON.parse(user) };
     }
 
@@ -33,8 +51,6 @@ export const AuthProvider: React.FC = ({ children }) => {
   });
 
   const signIn = useCallback(async ({ email, password }) => {
-    // Make request to get Token and userData, this line bellow is a ficticius request received
-
     const {
       data: { token, user },
     } = await api.post<AuthState>("sessions", {
@@ -42,12 +58,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       password,
     });
 
-    api.interceptors.request.use((config) => {
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-      }
-      return config;
-    });
+    api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
     localStorage.setItem("@MyBudgets:token", token);
     localStorage.setItem("@MyBudgets:user", JSON.stringify(user));

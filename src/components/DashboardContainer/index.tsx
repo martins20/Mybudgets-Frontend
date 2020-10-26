@@ -16,7 +16,7 @@ interface DashboardContainerProps {
 
 const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
   const handleSumTotalOfBudgetPrice = useCallback(() => {
-    const totalPrice = budgets.reduce(
+    const totalPrice = budgets?.reduce(
       (accumulator, budget) => accumulator + budget.budget_price,
       0
     );
@@ -34,7 +34,7 @@ const DashboardContainer: React.FC<DashboardContainerProps> = ({ budgets }) => {
         <div>
           <InfoCard quantity={budgets.length} type="Budget" />
           <InfoCard
-            quantity={handleSumTotalOfBudgetPrice()}
+            quantity={handleSumTotalOfBudgetPrice() || 0}
             type="Total price"
           />
         </div>
